@@ -10,4 +10,11 @@ const miCarrito = new Carrito();
 miCarrito.anadir(productoCochecito, 2)
 miCarrito.retirar(productoCochecito);
 
-console.log('miCarrito', miCarrito);
+describe("Carrito", () => {
+    it("El carrito tiene un solo item", () => {
+        expect(miCarrito.compra.length).toEqual(1);
+    });
+    it("El carrito tiene una unidad del primer item", () => {
+        expect(miCarrito.compra[0].cantidad).toEqual(1);
+    });
+});
