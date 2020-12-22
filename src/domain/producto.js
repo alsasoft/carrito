@@ -8,4 +8,10 @@ export default class Producto {
     getDescription() {
         return `${this.nombre} (${this.marca}) [${this.precio} €]`;
     }
+
+    isEqual(producto) {
+        return this.nombre === producto.nombre
+            && this.marca === producto.marca
+            && this.precio === producto.precio;
+    }
 }
