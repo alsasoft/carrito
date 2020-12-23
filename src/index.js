@@ -17,6 +17,42 @@ describe("Carrito", () => {
         expect(carrito.obtenerCantidad(productoBiberon)).toEqual(0);
     });
 
+    it(`Intento añadir 0 productos '${productoChupete.getDescription()}'`, () => {
+        expect(() => {
+            carrito.anadir(productoChupete, 0);
+        }).toThrowError(Error);
+        expect(carrito.esVacio()).toEqual(true);
+        expect(carrito.numeroItems()).toEqual(0);
+        expect(carrito.obtenerCantidad(productoChupete)).toEqual(0);
+    });
+
+    it(`Intento añadir -3 productos '${productoChupete.getDescription()}'`, () => {
+        expect(() => {
+            carrito.anadir(productoChupete, -3);
+        }).toThrowError(Error);
+        expect(carrito.esVacio()).toEqual(true);
+        expect(carrito.numeroItems()).toEqual(0);
+        expect(carrito.obtenerCantidad(productoChupete)).toEqual(0);
+    });
+
+    it(`Intento retirar 0 productos '${productoChupete.getDescription()}'`, () => {
+        expect(() => {
+            carrito.retirar(productoChupete, 0);
+        }).toThrowError(Error);
+        expect(carrito.esVacio()).toEqual(true);
+        expect(carrito.numeroItems()).toEqual(0);
+        expect(carrito.obtenerCantidad(productoChupete)).toEqual(0);
+    });
+
+    it(`Intento retirar -3 productos '${productoChupete.getDescription()}'`, () => {
+        expect(() => {
+            carrito.retirar(productoChupete, -3);
+        }).toThrowError(Error);
+        expect(carrito.esVacio()).toEqual(true);
+        expect(carrito.numeroItems()).toEqual(0);
+        expect(carrito.obtenerCantidad(productoChupete)).toEqual(0);
+    });
+
     it(`Añado un producto '${productoCochecito.getDescription()}'`, () => {
         carrito.anadir(productoCochecito, 1);
         expect(carrito.esVacio()).toEqual(false);
