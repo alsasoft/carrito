@@ -16,7 +16,14 @@ export default class Carrito {
     }
 
     anadir(producto, cantidad = 1) {
-        cantidad = parseInt(cantidad) || 0;
+        console.log('cantidad', cantidad);
+        if (isNaN(cantidad)) {
+            throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número`);
+        }
+
+        if (parseInt(cantidad) != cantidad) {
+            throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número entero`);
+        }
 
         if (cantidad <= 0) {
             throw new Error(`La cantidad de producto '${producto.getDescription()}' debe ser mayor que 0`);
@@ -31,7 +38,13 @@ export default class Carrito {
     }
 
     retirar(producto, cantidad = 1) {
-        cantidad = parseInt(cantidad) || 0;
+        if (isNaN(cantidad)) {
+            throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número`);
+        }
+
+        if (parseInt(cantidad) != cantidad) {
+            throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número entero`);
+        }
 
         if (cantidad <= 0) {
             throw new Error(`La cantidad de producto '${producto.getDescription()}' debe ser mayor que 0`);

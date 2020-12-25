@@ -26,6 +26,15 @@ describe("Carrito", () => {
         expect(carrito.obtenerCantidad(productoChupete)).toEqual(0);
     });
 
+    it(`Intento añadir null productos '${productoChupete.getDescription()}'`, () => {
+        expect(() => {
+            carrito.anadir(productoChupete, null);
+        }).toThrowError(Error);
+        expect(carrito.esVacio()).toEqual(true);
+        expect(carrito.numeroItems()).toEqual(0);
+        expect(carrito.obtenerCantidad(productoChupete)).toEqual(0);
+    });
+
     it(`Intento añadir -3 productos '${productoChupete.getDescription()}'`, () => {
         expect(() => {
             carrito.anadir(productoChupete, -3);
