@@ -16,12 +16,11 @@ export default class Carrito {
     }
 
     anadir(producto, cantidad = 1) {
-        console.log('cantidad', cantidad);
         if (isNaN(cantidad)) {
             throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número`);
         }
 
-        if (parseInt(cantidad) != cantidad) {
+        if (parseInt(cantidad) !== cantidad) {
             throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número entero`);
         }
 
@@ -42,7 +41,7 @@ export default class Carrito {
             throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número`);
         }
 
-        if (parseInt(cantidad) != cantidad) {
+        if (parseInt(cantidad) !== cantidad) {
             throw new Error(`La cantidad de producto '${producto.getDescription()}' NO es un número entero`);
         }
 
