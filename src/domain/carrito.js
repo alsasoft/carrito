@@ -18,7 +18,7 @@ export default class Carrito {
     }
 
     anadir(producto, cantidad = 1) {
-        this.item.push({
+        this.items.push({
             producto: producto,
             cantidad: cantidad,
         });
