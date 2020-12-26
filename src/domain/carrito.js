@@ -3,7 +3,10 @@ export default class Carrito {
         this.items = [];
     }
 
-    vaciar() {}
+    vaciar() {
+        this.items = [];
+        // return this.items;
+    }
 
     esVacio() {
         if (this.items.length === 0) {
@@ -18,17 +21,56 @@ export default class Carrito {
     }
 
     anadir(producto, cantidad = 1) {
-        this.items.push({
-            producto: producto,
-            cantidad: cantidad,
-        });
+        const itemBuscado = this.items.find((item) =>
+            item.producto.isEqual(producto)
+        );
+
+        if (itemBuscado === undefined) {
+            this.items.push({
+                producto: producto,
+                cantidad: cantidad,
+            });
+        } else {
+            itemBuscado.cantidad += cantidad;
+        }
     }
 
-    retirar(producto, cantidad = 1) {}
+    retirar(producto, cantidad = 1) {
+        const itemBuscado = this.items.find((item) =>
+            item.producto.isEqual(producto)
+        );
+        if (itemBuscado === undefined) {
+            throw new Error("El producto no ha sido encontrado");
+        } else if (itemBuscado.cantidad < cantidad) {
+            cantidad = 0;
+            throw new Error(
+                "El número de productos a retirar no puede ser mayor que la cantidad"
+            );
+        } else {
+            itemBuscado.cantidad -= cantidad;
+            if (itemBuscado.cantidad === 0) {
+                const i = this.items.indexOf(itemBuscado);
+                this.items.splice(i, 1);
+            }
+        }
+    }
 
-    precioTotal() {}
+    precioTotal() {
+        const total = this.items.reduce(
+            (acc, item) => acc + item.cantidad * item.producto.precio,
+            0
+        );
+        return total;
+        /*this.items.reduce((acc, item) => {
+                                                                                    return acc + item.cantidad * item.producto.precio;
+                                                                                }, 0);*/
+    }
 
-    precioMarca(marca) {}
+    precioMarca(marca) {
+        return this.items
+            .filter((item) => item.producto.marca === marca)
+            .reduce((acc, next) => acc + next.cantidad * next.producto.precio, 0);
+    }
 
     obtenerCantidad(producto) {
         /*  const itemBuscado = this.items.find(function(item) {
@@ -49,5 +91,18 @@ export default class Carrito {
         }
     }
 
-    obtenerJson() {}
+    obtenerJson() {
+        const itemBuscado = this.items.find((item) =>
+            item.producto.isEqual(producto)
+        );
+
+        if (itemBuscado.nombre === undefined) {
+            this.items.push({
+                producto: producto,
+                cantidad: cantidad,
+            });
+        } else {
+            itemBuscado.cantidad += cantidad;
+        }
+    }
 }
