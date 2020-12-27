@@ -25,7 +25,9 @@ export default class Carrito {
             item.producto.isEqual(producto)
         );
 
-        if (itemBuscado === undefined) {
+        if (isNaN(cantidad) || cantidad <= 0) {
+            throw new Error("Debe ingresar un producto o cantidad válida");
+        } else if (itemBuscado === undefined) {
             this.items.push({
                 producto: producto,
                 cantidad: cantidad,
@@ -62,8 +64,8 @@ export default class Carrito {
         );
         return total;
         /*this.items.reduce((acc, item) => {
-                                                                                    return acc + item.cantidad * item.producto.precio;
-                                                                                }, 0);*/
+                                                                                                                                                                                return acc + item.cantidad * item.producto.precio;
+                                                                                                                                                                            }, 0);*/
     }
 
     precioMarca(marca) {
