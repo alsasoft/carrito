@@ -94,26 +94,22 @@ describe("Carrito", () => {
         expect(carrito.obtenerCantidad(productoBiberon)).toEqual(2);
         expect(carrito.obtenerCantidad(productoCochecito)).toEqual(1);
     });
-
-    /*    it(`El JSON se genera correctamente`, () => {
-            expect(carrito.obtenerJson()).toEqual(
+    // test 12
+    it(`El JSON se genera correctamente`, () => {
+        expect(carrito.obtenerJson()).toEqual(
                 '[{"producto":{"nombre":"chupete","marca":"nuk","precio":5.95},"cantidad":3},{"producto":{"nombre":"biberon","marca":"nuk","precio":30.95},"cantidad":2},{"producto":{"nombre":"cochecito","marca":"chicco","precio":341.1},"cantidad":1}]'
-            );
-        });
-*/
-
-    //test 13
+        );
+    });
+    // test 13
     it(`El precio total del carrito es 420.85 (3 * 5.95 + 2 * 30.95 + 1 * 341.10)`, () => {
         expect(carrito.precioTotal()).toEqual(420.85);
     });
-
     // test 14
     it(`El precio del carrito en productos de la marca 'nuk' es 79.75 (3 * 5.95 + 2 * 30.95)`, () => {
         expect(carrito.precioMarca("nuk")).toEqual(79.75);
     });
-
-    /*                it(`El precio del carrito en productos de la marca 'chicco' es 341.10 (1 * 341.10)`, () => {
-                               expect(carrito.precioMarca("chicco")).toEqual(341.1);
-                                                 });
-                                    */
+    // test 15
+    it(`El precio del carrito en productos de la marca 'chicco' es 341.10 (1 * 341.10)`, () => {
+        expect(carrito.precioMarca("chicco")).toEqual(341.1);
+    });
 });
